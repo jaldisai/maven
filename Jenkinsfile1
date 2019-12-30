@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+    stages
+{
+    stage ('conti..download')
+    {
+        steps
+        {
+            git 'https://github.com/jaldisai/maven.git'
+        }
+        
+    }
+    stage ('conti..biuld')
+    {
+        steps
+        {
+            sh label: '', script: '''mvn package
+'''
+        }
+    }
+    stage ('conti..deploy')
+    {
+        steps
+        {
+            sh label: '', script: 'scp  /home/ubuntu/.jenkins/workspace/declarativeproj/webapp/target/webapp.war ubuntu@172.31.4.58:/var/lib/tomcat8/webapps/one.war'
+        }
+		}
+    stage ('conti..testing')
+    {
+        steps
+        {
+            git 'https://github.com/jaldisai/selenium-rajender.git'
+            sh label: '', script: 'java -jar /home/ubuntu/.jenkins/workspace/declarativeproj/testing.jar'
+        }
+    }
+    
+    stage ('conti..deleivery')
+    {
+        steps
+        {
+          sh label: '', script: '''scp  /home/ubuntu/.jenkins/workspace/declarativeproj/webapp/target/webapp.war ubuntu@172.31.8.228:/var/lib/tomcat8/webapps/two.war
+'''
+    }
+    
+    
+}
+}
+}
