@@ -90,7 +90,7 @@ pipeline
                 {
                     try
                     {
-                        sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/Declarative-exp/webapp/target/webapp.war ubuntu@172.31.21.163:/var/lib/tomcat8/webapps/prodexp.war'
+                        sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/Declarative-exp/webapp/target/webapp.war ubuntu@172.31.8.228:/var/lib/tomcat8/webapps/prodexp.war'
                     }
                     catch(Exception e5)
                     {
