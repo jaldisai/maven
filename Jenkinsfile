@@ -15,18 +15,21 @@ node('master')
     }
     stage('ContinuousTesting')
     {
-        git 'https://github.com/jaldisai/selenium-Rajender.git
+        git 'https://github.com/jaldisai/selenium-rajender.git
         sh label: '', script: 'java -jar /home/ubuntu/.jenkins/workspace/Firstproj/testing.jar'
     }
     stage('ContinuousDelivery')
     {
          sh label: '', script: '''scp /home/ubuntu/.jenkins/workspace/Firstproj/webapp/target/webapp.war ubuntu@18.144.9.252:/var/lib/tomcat8/webapps/prodapp.war
 '''
-    }
-
-
-
-
-
-
+    
+	
+	
+	
+	}
+	
+	
+	
+	
+	}
 
